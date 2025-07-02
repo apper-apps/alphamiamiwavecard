@@ -12,6 +12,9 @@ import SearchPage from '@/components/pages/SearchPage';
 import CreatePostPage from '@/components/pages/CreatePostPage';
 import ChatsPage from '@/components/pages/ChatsPage';
 import ChatRoomPage from '@/components/pages/ChatRoomPage';
+import ChannelPage from '@/components/pages/ChannelPage';
+import DiscoverPage from '@/components/pages/DiscoverPage';
+import NotificationPage from '@/components/pages/NotificationPage';
 import ProfilePage from '@/components/pages/ProfilePage';
 import Login from '@/components/pages/Login';
 import Signup from '@/components/pages/Signup';
@@ -149,12 +152,15 @@ function AppContent() {
           <Route path="/error" element={<ErrorPage />} />
           <Route path="/prompt-password/:appId/:emailAddress/:provider" element={<PromptPassword />} />
           <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
-          <Route path="/app" element={<Layout />}>
+<Route path="/app" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="search" element={<SearchPage />} />
             <Route path="create" element={<CreatePostPage />} />
             <Route path="chats" element={<ChatsPage />} />
             <Route path="chats/:chatId" element={<ChatRoomPage />} />
+            <Route path="channel" element={<ChannelPage />} />
+            <Route path="discover" element={<DiscoverPage />} />
+            <Route path="notifications" element={<NotificationPage />} />
             <Route path="profile/:username" element={<ProfilePage />} />
           </Route>
         </Routes>
