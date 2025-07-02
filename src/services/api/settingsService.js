@@ -28,7 +28,7 @@ async function getAll() {
 const response = await apperClient.fetchRecords('settings', params);
 
     if (!response.success) {
-      console.error(response.message);
+console.error(response.message);
       toast.error(response.message);
       return [];
     }
@@ -39,8 +39,6 @@ const response = await apperClient.fetchRecords('settings', params);
     }
 
     return response.data;
-
-    return response.data || [];
   } catch (error) {
     console.error("Error fetching settings:", error);
     return [];
@@ -67,7 +65,7 @@ async function getById(id) {
 const response = await apperClient.getRecordById('settings', id, params);
 
     if (!response.success) {
-      console.error(response.message);
+console.error(response.message);
       toast.error(response.message);
       return null;
     }
@@ -76,8 +74,6 @@ const response = await apperClient.getRecordById('settings', id, params);
     if (!response.data) {
       return null;
     }
-
-    return response.data;
 
     return response.data;
   } catch (error) {
@@ -106,7 +102,7 @@ async function create(settingData) {
 const response = await apperClient.createRecord('settings', params);
 
     if (!response.success) {
-      console.error(response.message);
+console.error(response.message);
       toast.error(response.message);
       return null;
     }
@@ -136,20 +132,6 @@ const response = await apperClient.createRecord('settings', params);
 
     toast.success('Setting created successfully');
     return response.data;
-
-    if (response.results) {
-      const successfulRecords = response.results.filter(result => result.success);
-      const failedRecords = response.results.filter(result => !result.success);
-
-      if (failedRecords.length > 0) {
-        console.error(`Failed to create ${failedRecords.length} settings:${JSON.stringify(failedRecords)}`);
-        return null;
-      }
-
-      return successfulRecords[0]?.data || null;
-    }
-
-    return null;
   } catch (error) {
     console.error("Error creating setting:", error);
     return null;
@@ -177,7 +159,7 @@ async function update(id, settingData) {
 const response = await apperClient.updateRecord('settings', params);
 
     if (!response.success) {
-      console.error(response.message);
+console.error(response.message);
       toast.error(response.message);
       return null;
     }
@@ -207,20 +189,6 @@ const response = await apperClient.updateRecord('settings', params);
 
     toast.success('Setting updated successfully');
     return response.data;
-
-    if (response.results) {
-      const successfulUpdates = response.results.filter(result => result.success);
-      const failedUpdates = response.results.filter(result => !result.success);
-
-      if (failedUpdates.length > 0) {
-        console.error(`Failed to update ${failedUpdates.length} settings:${JSON.stringify(failedUpdates)}`);
-        return null;
-      }
-
-      return successfulUpdates[0]?.data || null;
-    }
-
-    return null;
   } catch (error) {
     console.error("Error updating setting:", error);
     return null;
@@ -242,7 +210,7 @@ async function deleteRecord(id) {
 const response = await apperClient.deleteRecord('settings', params);
 
     if (!response.success) {
-      console.error(response.message);
+console.error(response.message);
       toast.error(response.message);
       return false;
     }
@@ -269,20 +237,6 @@ const response = await apperClient.deleteRecord('settings', params);
 
     toast.success('Setting deleted successfully');
     return true;
-
-    if (response.results) {
-      const successfulDeletions = response.results.filter(result => result.success);
-      const failedDeletions = response.results.filter(result => !result.success);
-
-      if (failedDeletions.length > 0) {
-        console.error(`Failed to delete ${failedDeletions.length} settings:${JSON.stringify(failedDeletions)}`);
-        return false;
-      }
-
-      return successfulDeletions.length > 0;
-    }
-
-    return false;
   } catch (error) {
     console.error("Error deleting setting:", error);
     return false;
