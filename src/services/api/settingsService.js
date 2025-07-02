@@ -1,6 +1,4 @@
-import { toast } from "react-toastify";
-import React from "react";
-
+import { toast } from 'react-toastify';
 // Utility function for delays
 // Settings service for managing logo and animation settings
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
