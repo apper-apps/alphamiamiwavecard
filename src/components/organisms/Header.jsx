@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/atoms/Button';
 import Avatar from '@/components/atoms/Avatar';
 import NotificationItem from '@/components/molecules/NotificationItem';
 import ApperIcon from '@/components/ApperIcon';
-
+import { AuthContext } from '@/App';
 const Header = ({ onMenuClick }) => {
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -140,14 +140,28 @@ const Header = ({ onMenuClick }) => {
               Create
             </Button>
 
-            {/* Profile */}
-            <Avatar
-              size="md"
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=currentuser"
-              alt="Your Profile"
-              online={true}
-              onClick={() => navigate('/app/profile/currentuser')}
-            />
+{/* Profile & Logout */}
+            <div className="flex items-center space-x-3">
+              <Button
+                variant="ghost"
+                size="sm"
+                icon="LogOut"
+                onClick={async () => {
+                  const { logout } = React.useContext(AuthContext);
+                  await logout();
+                }}
+                className="text-gray-400 hover:text-miami-coral"
+                title="Logout"
+              />
+              
+              <Avatar
+                size="md"
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=currentuser"
+                alt="Your Profile"
+                online={true}
+                onClick={() => navigate('/app/profile/currentuser')}
+              />
+            </div>
           </div>
         </div>
       </div>
