@@ -25,11 +25,35 @@ async function getAll() {
       }
     };
 
-const response = await apperClient.fetchRecords('settings', params);
+// Initialize ApperClient with Project ID and Public Key
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
 
-    if (!response.success) {
-console.error(response.message);
-      toast.error(response.message);
+    // Configure fields based on settings table schema
+    const params = {
+      fields: [
+        { field: { Name: "Name" } },
+        { field: { Name: "logo_url" } },
+        { field: { Name: "animation_settings" } },
+        { field: { Name: "theme" } },
+        { field: { Name: "Tags" } },
+        { field: { Name: "Owner" } },
+        { field: { Name: "CreatedOn" } },
+        { field: { Name: "CreatedBy" } },
+        { field: { Name: "ModifiedOn" } },
+        { field: { Name: "ModifiedBy" } }
+      ]
+    };
+
+    const response = await apperClient.fetchRecords('settings', params);
+
+    if (!response || !response.success) {
+      const errorMessage = response?.message || 'Failed to fetch settings';
+      console.error(errorMessage);
+      toast.error(errorMessage);
       return [];
     }
 
@@ -62,14 +86,37 @@ async function getById(id) {
       ]
     };
 
-const response = await apperClient.getRecordById('settings', id, params);
+// Initialize ApperClient with Project ID and Public Key
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
 
-    if (!response.success) {
-console.error(response.message);
-      toast.error(response.message);
+    // Configure fields for single record retrieval
+    const params = {
+      fields: [
+        { field: { Name: "Name" } },
+        { field: { Name: "logo_url" } },
+        { field: { Name: "animation_settings" } },
+        { field: { Name: "theme" } },
+        { field: { Name: "Tags" } },
+        { field: { Name: "Owner" } },
+        { field: { Name: "CreatedOn" } },
+        { field: { Name: "CreatedBy" } },
+        { field: { Name: "ModifiedOn" } },
+        { field: { Name: "ModifiedBy" } }
+      ]
+    };
+
+    const response = await apperClient.getRecordById('settings', id, params);
+
+    if (!response || !response.success) {
+      const errorMessage = response?.message || 'Failed to fetch setting';
+      console.error(errorMessage);
+      toast.error(errorMessage);
       return null;
     }
-
     // Handle empty or undefined data
     if (!response.data) {
       return null;
@@ -99,11 +146,33 @@ async function create(settingData) {
       }]
     };
 
-const response = await apperClient.createRecord('settings', params);
+// Initialize ApperClient with Project ID and Public Key
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
 
-    if (!response.success) {
-console.error(response.message);
-      toast.error(response.message);
+    // Filter to only include Updateable fields for creation
+    const updateableData = {
+      Name: settingData.Name,
+      logo_url: settingData.logo_url,
+      animation_settings: settingData.animation_settings,
+      theme: settingData.theme,
+      Tags: settingData.Tags,
+      Owner: settingData.Owner
+    };
+
+    const params = {
+      records: [updateableData]
+    };
+
+    const response = await apperClient.createRecord('settings', params);
+
+    if (!response || !response.success) {
+      const errorMessage = response?.message || 'Failed to create setting';
+      console.error(errorMessage);
+      toast.error(errorMessage);
       return null;
     }
 
@@ -156,11 +225,34 @@ async function update(id, settingData) {
       }]
     };
 
-const response = await apperClient.updateRecord('settings', params);
+// Initialize ApperClient with Project ID and Public Key
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
 
-    if (!response.success) {
-console.error(response.message);
-      toast.error(response.message);
+    // Filter to only include Updateable fields for update
+    const updateableData = {
+      Id: id, // Required for update
+      Name: settingData.Name,
+      logo_url: settingData.logo_url,
+      animation_settings: settingData.animation_settings,
+      theme: settingData.theme,
+      Tags: settingData.Tags,
+      Owner: settingData.Owner
+    };
+
+    const params = {
+      records: [updateableData]
+    };
+
+    const response = await apperClient.updateRecord('settings', params);
+
+    if (!response || !response.success) {
+      const errorMessage = response?.message || 'Failed to update setting';
+      console.error(errorMessage);
+      toast.error(errorMessage);
       return null;
     }
 
@@ -207,14 +299,25 @@ async function deleteRecord(id) {
       RecordIds: [id]
     };
 
-const response = await apperClient.deleteRecord('settings', params);
+// Initialize ApperClient with Project ID and Public Key
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
 
-    if (!response.success) {
-console.error(response.message);
-      toast.error(response.message);
+    const params = {
+      RecordIds: [id]
+    };
+
+    const response = await apperClient.deleteRecord('settings', params);
+
+    if (!response || !response.success) {
+      const errorMessage = response?.message || 'Failed to delete setting';
+      console.error(errorMessage);
+      toast.error(errorMessage);
       return false;
     }
-
     if (response.results) {
       const successfulDeletions = response.results.filter(result => result.success);
       const failedDeletions = response.results.filter(result => !result.success);
