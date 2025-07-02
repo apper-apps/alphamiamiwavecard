@@ -1,9 +1,9 @@
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import React from "react";
 
 // Utility function for delays
 // Settings service for managing logo and animation settings
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 async function getAll() {
   try {
     const { ApperClient } = window.ApperSDK;
@@ -12,43 +12,67 @@ async function getAll() {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
-// Configure fields based on settings table schema
-const params = {
-      "fields": [
-        { "field": { "Name": "Name" } },
-        { "field": { "Name": "logo_url" } },
-        { "field": { "Name": "animation_settings" } },
-        { "field": { "Name": "theme" } },
-        { "field": { "Name": "Tags" } },
-        { "field": { "Name": "Owner" } },
-        { "field": { "Name": "CreatedOn" } },
-        { "field": { "Name": "CreatedBy" } },
-        { "field": { "Name": "ModifiedOn" } },
-        { "field": { "Name": "ModifiedBy" } }
+    // Configure fields based on settings table schema
+    const params = {
+      fields: [
+        {
+          field: {
+            Name: "Name"
+          }
+        },
+        {
+          field: {
+            Name: "Tags"
+          }
+        },
+        {
+          field: {
+            Name: "Owner"
+          }
+        },
+        {
+          field: {
+            Name: "logo_url"
+          }
+        },
+        {
+          field: {
+            Name: "animation_settings"
+          }
+        },
+        {
+          field: {
+            Name: "theme"
+          }
+        },
+        {
+          field: {
+            Name: "CreatedOn"
+          }
+        },
+        {
+          field: {
+            Name: "ModifiedOn"
+          }
+        }
       ]
     };
 
-    const response = await apperClient.fetchRecords('settings', params);
-
-    if (!response || !response.success) {
-      const errorMessage = response?.message || 'Failed to fetch settings';
-      console.error(errorMessage);
-      toast.error(errorMessage);
+    const response = await apperClient.fetchRecords("settings", params);
+    
+    if (!response.success) {
+      console.error(response.message);
+      toast.error(response.message);
       return [];
     }
 
-    // Handle empty or undefined data
-    if (!response.data || response.data.length === 0) {
-      return [];
-    }
-
-    return response.data;
+    return response.data || [];
   } catch (error) {
     console.error("Error fetching settings:", error);
-    return [];
+    toast.error("Failed to fetch settings");
+    throw error;
   }
 }
-
 async function getById(id) {
   try {
     const { ApperClient } = window.ApperSDK;
@@ -58,38 +82,65 @@ async function getById(id) {
     });
 
 // Configure fields for single record retrieval
-const params = {
-      "fields": [
-        { "field": { "Name": "Name" } },
-        { "field": { "Name": "logo_url" } },
-        { "field": { "Name": "animation_settings" } },
-        { "field": { "Name": "theme" } },
-        { "field": { "Name": "Tags" } },
-        { "field": { "Name": "Owner" } },
-        { "field": { "Name": "CreatedOn" } },
-        { "field": { "Name": "CreatedBy" } },
-        { "field": { "Name": "ModifiedOn" } },
-        { "field": { "Name": "ModifiedBy" } }
+    const params = {
+      fields: [
+        {
+          field: {
+            Name: "Name"
+          }
+        },
+        {
+          field: {
+            Name: "Tags"
+          }
+        },
+        {
+          field: {
+            Name: "Owner"
+          }
+        },
+        {
+          field: {
+            Name: "logo_url"
+          }
+        },
+        {
+          field: {
+            Name: "animation_settings"
+          }
+        },
+        {
+          field: {
+            Name: "theme"
+          }
+        },
+        {
+          field: {
+            Name: "CreatedOn"
+          }
+        },
+        {
+          field: {
+            Name: "ModifiedOn"
+          }
+        }
       ]
     };
-    const response = await apperClient.getRecordById('settings', id, params);
 
-    if (!response || !response.success) {
-      const errorMessage = response?.message || 'Failed to fetch setting';
-      console.error(errorMessage);
-      toast.error(errorMessage);
-      return null;
-    }
-    // Handle empty or undefined data
-    if (!response.data) {
+    const response = await apperClient.getRecordById("settings", id, params);
+    
+    if (!response.success) {
+      console.error(response.message);
+      toast.error(response.message);
       return null;
     }
 
     return response.data;
   } catch (error) {
     console.error(`Error fetching setting with ID ${id}:`, error);
-    return null;
-  }
+    toast.error("Failed to fetch setting");
+    throw error;
+}
 }
 
 async function create(settingData) {
@@ -100,7 +151,7 @@ async function create(settingData) {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
-// Filter to only include Updateable fields for creation
+    // Filter to only include Updateable fields for creation
     const updateableData = {
       Name: settingData.Name,
       logo_url: settingData.logo_url,
@@ -150,6 +201,7 @@ async function create(settingData) {
     return response.data;
   } catch (error) {
     console.error("Error creating setting:", error);
+    toast.error("Failed to create setting");
     return null;
   }
 }
