@@ -14,17 +14,17 @@ async function getAll() {
 
 // Configure fields based on settings table schema
 const params = {
-      fields: [
-        { field: { Name: "Name" } },
-        { field: { Name: "logo_url" } },
-        { field: { Name: "animation_settings" } },
-        { field: { Name: "theme" } },
-        { field: { Name: "Tags" } },
-        { field: { Name: "Owner" } },
-        { field: { Name: "CreatedOn" } },
-        { field: { Name: "CreatedBy" } },
-        { field: { Name: "ModifiedOn" } },
-        { field: { Name: "ModifiedBy" } }
+      "fields": [
+        { "field": { "Name": "Name" } },
+        { "field": { "Name": "logo_url" } },
+        { "field": { "Name": "animation_settings" } },
+        { "field": { "Name": "theme" } },
+        { "field": { "Name": "Tags" } },
+        { "field": { "Name": "Owner" } },
+        { "field": { "Name": "CreatedOn" } },
+        { "field": { "Name": "CreatedBy" } },
+        { "field": { "Name": "ModifiedOn" } },
+        { "field": { "Name": "ModifiedBy" } }
       ]
     };
 
@@ -58,18 +58,18 @@ async function getById(id) {
     });
 
 // Configure fields for single record retrieval
-    const params = {
-fields: [
-        { field: { Name: "Name" } },
-        { field: { Name: "logo_url" } },
-        { field: { Name: "animation_settings" } },
-        { field: { Name: "theme" } },
-        { field: { Name: "Tags" } },
-        { field: { Name: "Owner" } },
-        { field: { Name: "CreatedOn" } },
-        { field: { Name: "CreatedBy" } },
-        { field: { Name: "ModifiedOn" } },
-        { field: { Name: "ModifiedBy" } }
+const params = {
+      "fields": [
+        { "field": { "Name": "Name" } },
+        { "field": { "Name": "logo_url" } },
+        { "field": { "Name": "animation_settings" } },
+        { "field": { "Name": "theme" } },
+        { "field": { "Name": "Tags" } },
+        { "field": { "Name": "Owner" } },
+        { "field": { "Name": "CreatedOn" } },
+        { "field": { "Name": "CreatedBy" } },
+        { "field": { "Name": "ModifiedOn" } },
+        { "field": { "Name": "ModifiedBy" } }
       ]
     };
     const response = await apperClient.getRecordById('settings', id, params);
