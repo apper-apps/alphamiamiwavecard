@@ -2,10 +2,37 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ApperIcon from '@/components/ApperIcon';
+import * as settingsService from '@/services/api/settingsService';
 
 const SplashScreen = () => {
   const navigate = useNavigate();
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [logo, setLogo] = useState(null);
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        setLoading(true);
+        const settingsData = await settingsService.getAll();
+        
+        if (settingsData && settingsData.length > 0) {
+          const appSettings = settingsData[0];
+          setSettings(appSettings);
+          setLogo(appSettings.logo_url);
+        }
+      } catch (err) {
+        console.error("Error loading settings:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSettings();
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,13 +42,98 @@ const SplashScreen = () => {
     return () => clearTimeout(timer);
   }, [navigate]);
 
+  // Animation theme detection
+  const getAnimationTheme = () => {
+    if (!settings?.animation_settings) return 'default';
+    
+    const animationSettings = settings.animation_settings.toLowerCase();
+    if (animationSettings.includes('ranting') || animationSettings.includes('rant')) {
+      return 'ranting';
+    }
+    if (animationSettings.includes('super') && animationSettings.includes('power')) {
+      return 'super-powers';
+    }
+    return 'default';
+  };
+
+  const animationTheme = getAnimationTheme();
+
+  // Theme-specific animations
+  const getThemeAnimations = () => {
+    switch (animationTheme) {
+      case 'ranting':
+        return {
+          logoScale: { scale: [1, 1.3, 1.1, 1.4, 1], rotate: [0, 5, -5, 8, 0] },
+          logoShadow: [
+            '0 0 20px #FF6B9D60, 0 0 40px #FF6B9D40',
+            '0 0 40px #FF6B9D80, 0 0 60px #FF6B9D60',
+            '0 0 60px #FF6B9D90, 0 0 80px #FF6B9D70',
+            '0 0 20px #FF6B9D60, 0 0 40px #FF6B9D40'
+          ],
+          textShadow: [
+            '0 0 30px #FF6B9D90, 0 0 60px #FF6B9D60',
+            '0 0 50px #FF6B9D80, 0 0 80px #4ECDC480',
+            '0 0 70px #FFE66D80, 0 0 100px #FF6B9D70',
+            '0 0 30px #FF6B9D90, 0 0 60px #FF6B9D60'
+          ],
+          duration: 2
+        };
+      case 'super-powers':
+        return {
+          logoScale: { scale: [1, 1.2, 1.5, 1.2, 1], rotate: [0, 90, 180, 270, 360] },
+          logoShadow: [
+            '0 0 30px #4ECDC480, 0 0 60px #4ECDC440',
+            '0 0 50px #FFE66D80, 0 0 80px #FFE66D60',
+            '0 0 70px #FF6B9D80, 0 0 100px #FF6B9D60',
+            '0 0 30px #4ECDC480, 0 0 60px #4ECDC440'
+          ],
+          textShadow: [
+            '0 0 25px #4ECDC480, 0 0 50px #4ECDC460',
+            '0 0 35px #FFE66D80, 0 0 70px #FFE66D60',
+            '0 0 45px #FF6B9D80, 0 0 90px #FF6B9D60',
+            '0 0 25px #4ECDC480, 0 0 50px #4ECDC460'
+          ],
+          duration: 3
+        };
+      default:
+        return {
+          logoScale: { scale: 1, rotate: 0 },
+          logoShadow: [
+            '0 0 20px #FF6B9D40',
+            '0 0 40px #4ECDC440',
+            '0 0 60px #FFE66D40',
+            '0 0 20px #FF6B9D40'
+          ],
+          textShadow: [
+            '0 0 20px #FF6B9D80',
+            '0 0 30px #4ECDC480',
+            '0 0 40px #FFE66D80',
+            '0 0 20px #FF6B9D80'
+          ],
+          duration: 4
+        };
+    }
+  };
+
+  const themeAnimations = getThemeAnimations();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-miami-background via-miami-surface to-miami-background flex items-center justify-center overflow-hidden">
-      {/* Background Animation */}
+      {/* Enhanced Background Animation based on theme */}
       <div className="absolute inset-0">
         <motion.div
           animate={{
-            background: [
+            background: animationTheme === 'ranting' ? [
+              'radial-gradient(circle at 20% 80%, #FF6B9D30 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 20%, #FF6B9D40 0%, transparent 60%)',
+              'radial-gradient(circle at 40% 40%, #FF6B9D35 0%, transparent 55%)',
+              'radial-gradient(circle at 20% 80%, #FF6B9D30 0%, transparent 50%)'
+            ] : animationTheme === 'super-powers' ? [
+              'radial-gradient(circle at 20% 80%, #4ECDC430 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 20%, #FFE66D30 0%, transparent 50%)',
+              'radial-gradient(circle at 40% 40%, #FF6B9D30 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 80%, #4ECDC430 0%, transparent 50%)'
+            ] : [
               'radial-gradient(circle at 20% 80%, #FF6B9D20 0%, transparent 50%)',
               'radial-gradient(circle at 80% 20%, #4ECDC420 0%, transparent 50%)',
               'radial-gradient(circle at 40% 40%, #FFE66D20 0%, transparent 50%)',
@@ -32,6 +144,60 @@ const SplashScreen = () => {
           className="absolute inset-0"
         />
       </div>
+
+      {/* Ranting Theme Speech Bubbles */}
+      {animationTheme === 'ranting' && (
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(4)].map((_, i) => (
+            <motion.div
+              key={`speech-${i}`}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{
+                scale: [0, 1, 1.2, 0],
+                opacity: [0, 1, 1, 0],
+                x: [0, (i % 2 === 0 ? 20 : -20), 0],
+                y: [0, -10, 0]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.5
+              }}
+              className={`absolute ${
+                i === 0 ? 'top-20 left-20' :
+                i === 1 ? 'top-32 right-20' :
+                i === 2 ? 'bottom-32 left-32' : 'bottom-20 right-32'
+              } w-16 h-12 bg-miami-pink/20 rounded-full border-2 border-miami-pink/40`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Super Powers Energy Rings */}
+      {animationTheme === 'super-powers' && (
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`energy-${i}`}
+              initial={{ scale: 0, opacity: 1 }}
+              animate={{
+                scale: [0, 4, 6],
+                opacity: [1, 0.5, 0]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.7
+              }}
+              className="absolute border-2 border-miami-turquoise/30 rounded-full"
+              style={{
+                width: '200px',
+                height: '200px'
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Main Logo Container */}
       <div className="relative z-10 flex flex-col items-center">
@@ -62,24 +228,46 @@ const SplashScreen = () => {
             className="w-24 h-24 border-2 border-miami-turquoise/50 rounded-full absolute inset-4"
           />
           
-          {/* Logo Background */}
+          {/* Logo Background with Theme-based Animation */}
           <motion.div
             animate={{ 
-              boxShadow: [
-                '0 0 20px #FF6B9D40',
-                '0 0 40px #4ECDC440',
-                '0 0 60px #FFE66D40',
-                '0 0 20px #FF6B9D40'
-              ]
+              boxShadow: themeAnimations.logoShadow,
+              ...themeAnimations.logoScale
             }}
-            transition={{ duration: 3, repeat: Infinity }}
+            transition={{ duration: themeAnimations.duration, repeat: Infinity }}
             className="w-20 h-20 bg-gradient-to-br from-miami-pink via-miami-turquoise to-miami-yellow rounded-2xl flex items-center justify-center relative z-10 m-6"
           >
-            <ApperIcon name="Waves" size={32} className="text-white" />
+            {/* Dynamic Logo or Fallback Icon */}
+            {logo && !loading ? (
+              <motion.img
+                src={logo}
+                alt="App Logo"
+                className="w-12 h-12 object-contain"
+                onError={() => setLogo(null)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+            ) : (
+              <ApperIcon name="Waves" size={32} className="text-white" />
+            )}
           </motion.div>
+
+          {/* Power Burst Effect for Super Powers Theme */}
+          {animationTheme === 'super-powers' && animationComplete && (
+            <motion.div
+              animate={{
+                scale: [1, 2, 1],
+                opacity: [0, 1, 0],
+                rotate: [0, 360]
+              }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
+              className="absolute inset-0 border-4 border-miami-yellow/50 rounded-full"
+            />
+          )}
         </motion.div>
 
-        {/* App Name Animation */}
+        {/* App Name Animation with Theme Effects */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -88,25 +276,42 @@ const SplashScreen = () => {
         >
           <motion.h1
             animate={{ 
-              textShadow: [
-                '0 0 20px #FF6B9D80',
-                '0 0 30px #4ECDC480',
-                '0 0 40px #FFE66D80',
-                '0 0 20px #FF6B9D80'
-              ]
+              textShadow: themeAnimations.textShadow
             }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="font-righteous text-5xl md:text-6xl text-white mb-2"
+            transition={{ duration: themeAnimations.duration, repeat: Infinity }}
+            className={`font-righteous text-5xl md:text-6xl text-white mb-2 ${
+              animationTheme === 'ranting' ? 'animate-pulse' : ''
+            }`}
           >
             MiamiWave
           </motion.h1>
+          
+          {/* Ranting Theme Intensity Indicator */}
+          {animationTheme === 'ranting' && (
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{ duration: 1, repeat: Infinity }}
+              className="text-miami-pink text-2xl font-bold"
+            >
+              !!!
+            </motion.div>
+          )}
+          
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
             className="text-gray-300 text-lg"
           >
-            Connect & Chat with Miami Vibes
+            {animationTheme === 'ranting' 
+              ? 'Express Yourself with Power!' 
+              : animationTheme === 'super-powers' 
+              ? 'Unleash Your Miami Super Powers!' 
+              : 'Connect & Chat with Miami Vibes'
+            }
           </motion.p>
         </motion.div>
 
@@ -123,7 +328,7 @@ const SplashScreen = () => {
               <motion.div
                 key={index}
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: animationTheme === 'ranting' ? [1, 1.5, 1] : [1, 1.2, 1],
                   backgroundColor: [
                     '#FF6B9D',
                     '#4ECDC4',
@@ -132,7 +337,7 @@ const SplashScreen = () => {
                   ]
                 }}
                 transition={{
-                  duration: 1.5,
+                  duration: animationTheme === 'ranting' ? 1 : 1.5,
                   repeat: Infinity,
                   delay: index * 0.2
                 }}
@@ -146,24 +351,29 @@ const SplashScreen = () => {
             transition={{ duration: 2, repeat: Infinity }}
             className="text-gray-400 text-sm"
           >
-            Loading your vibe...
+            {animationTheme === 'ranting' 
+              ? 'Charging your rant power...' 
+              : animationTheme === 'super-powers' 
+              ? 'Activating super powers...' 
+              : 'Loading your vibe...'
+            }
           </motion.p>
         </motion.div>
 
-        {/* Floating Elements */}
+        {/* Enhanced Floating Elements */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}
               initial={{ 
-                x: Math.random() * window.innerWidth, 
-                y: Math.random() * window.innerHeight,
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 scale: 0 
               }}
               animate={{
                 y: [null, -20, 0, -20],
-                scale: [0, 1, 1, 0],
-                rotate: [0, 180, 360]
+                scale: animationTheme === 'ranting' ? [0, 1.5, 1, 0] : [0, 1, 1, 0],
+                rotate: animationTheme === 'super-powers' ? [0, 360, 720] : [0, 180, 360]
               }}
               transition={{
                 duration: 4 + Math.random() * 2,
@@ -182,9 +392,13 @@ const SplashScreen = () => {
       {/* Bottom Wave Animation */}
       <motion.div
         animate={{
-          y: [0, -10, 0],
+          y: animationTheme === 'ranting' ? [0, -15, 5, -10, 0] : [0, -10, 0],
         }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ 
+          duration: animationTheme === 'ranting' ? 2 : 3, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
         className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-miami-pink/10 to-transparent"
         style={{
           clipPath: 'polygon(0 100%, 100% 100%, 100% 20%, 0 80%)'
