@@ -28,22 +28,6 @@ async function getAll() {
       ]
     };
 
-    // Configure fields based on settings table schema
-    const params = {
-      fields: [
-        { field: { Name: "Name" } },
-        { field: { Name: "logo_url" } },
-        { field: { Name: "animation_settings" } },
-        { field: { Name: "theme" } },
-        { field: { Name: "Tags" } },
-        { field: { Name: "Owner" } },
-        { field: { Name: "CreatedOn" } },
-        { field: { Name: "CreatedBy" } },
-        { field: { Name: "ModifiedOn" } },
-        { field: { Name: "ModifiedBy" } }
-      ]
-    };
-
     const response = await apperClient.fetchRecords('settings', params);
 
     if (!response || !response.success) {
@@ -89,22 +73,6 @@ async function getById(id) {
       ]
     };
 
-    // Configure fields for single record retrieval
-    const params = {
-      fields: [
-        { field: { Name: "Name" } },
-        { field: { Name: "logo_url" } },
-        { field: { Name: "animation_settings" } },
-        { field: { Name: "theme" } },
-        { field: { Name: "Tags" } },
-        { field: { Name: "Owner" } },
-        { field: { Name: "CreatedOn" } },
-        { field: { Name: "CreatedBy" } },
-        { field: { Name: "ModifiedOn" } },
-        { field: { Name: "ModifiedBy" } }
-      ]
-    };
-
     const response = await apperClient.getRecordById('settings', id, params);
 
     if (!response || !response.success) {
@@ -133,22 +101,7 @@ async function create(settingData) {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
-    // Only include Updateable fields
 // Filter to only include Updateable fields for creation
-    const updateableData = {
-      Name: settingData.Name,
-      logo_url: settingData.logo_url,
-      animation_settings: settingData.animation_settings,
-      theme: settingData.theme,
-      Tags: settingData.Tags,
-      Owner: settingData.Owner
-    };
-
-    const params = {
-      records: [updateableData]
-    };
-
-    // Filter to only include Updateable fields for creation
     const updateableData = {
       Name: settingData.Name,
       logo_url: settingData.logo_url,
@@ -210,22 +163,7 @@ async function update(id, settingData) {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
-    // Only include Updateable fields plus ID
 // Filter to only include Updateable fields for update
-    const updateableData = {
-      Id: id, // Required for update
-      Name: settingData.Name,
-      logo_url: settingData.logo_url,
-      animation_settings: settingData.animation_settings,
-      theme: settingData.theme,
-      Tags: settingData.Tags,
-      Owner: settingData.Owner
-    };
-
-    const params = {
-      records: [updateableData]
-    };
-
     // Filter to only include Updateable fields for update
     const updateableData = {
       Id: id, // Required for update
@@ -290,10 +228,6 @@ async function deleteRecord(id) {
     });
 
 const params = {
-      RecordIds: [id]
-    };
-
-    const params = {
       RecordIds: [id]
     };
 
