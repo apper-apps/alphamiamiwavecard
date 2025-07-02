@@ -6,11 +6,11 @@ import ApperIcon from '@/components/ApperIcon';
 const BottomNavigation = () => {
   const location = useLocation();
 
-  const navItems = [
+const navItems = [
     { path: '/app', icon: 'Home', label: 'Home', exact: true },
-    { path: '/app/search', icon: 'Search', label: 'Search' },
-    { path: '/app/create', icon: 'Plus', label: 'Create', isCreate: true },
-    { path: '/app/chats', icon: 'MessageCircle', label: 'Chats', badge: 3 },
+    { path: '/app/channel', icon: 'Tv', label: 'Channel' },
+    { path: '/app/discover', icon: 'Compass', label: 'Discover' },
+    { path: '/app/notifications', icon: 'Bell', label: 'Notification', badge: 3 },
     { path: '/app/profile/currentuser', icon: 'User', label: 'Profile' }
   ];
 
@@ -30,40 +30,35 @@ const BottomNavigation = () => {
             >
               {({ isActive: navIsActive }) => (
                 <>
-                  <motion.div
+<motion.div
                     whileTap={{ scale: 0.9 }}
                     className={`relative p-2 rounded-xl transition-all duration-200 ${
-                      item.isCreate
-                        ? 'bg-gradient-to-r from-miami-pink to-miami-coral neon-glow'
-                        : isActive
+                      isActive
                         ? 'bg-miami-pink/20 text-miami-pink'
                         : 'text-gray-400'
                     }`}
                   >
-                    <ApperIcon 
+<ApperIcon 
                       name={item.icon} 
                       size={20} 
-                      className={item.isCreate ? 'text-white' : ''} 
                     />
                     
-                    {item.badge && !item.isCreate && (
+{item.badge && (
                       <span className="absolute -top-1 -right-1 w-4 h-4 bg-miami-pink text-white text-xs rounded-full flex items-center justify-center font-bold">
                         {item.badge}
                       </span>
                     )}
                   </motion.div>
                   
-                  <span className={`text-xs mt-1 font-medium truncate max-w-full ${
-                    item.isCreate
-                      ? 'text-miami-pink'
-                      : isActive
+<span className={`text-xs mt-1 font-medium truncate max-w-full ${
+                    isActive
                       ? 'text-miami-pink'
                       : 'text-gray-400'
                   }`}>
                     {item.label}
                   </span>
                   
-                  {isActive && !item.isCreate && (
+{isActive && (
                     <motion.div
                       layoutId="activeTab"
                       className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-miami-pink rounded-full"
