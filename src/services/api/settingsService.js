@@ -58,6 +58,13 @@ async function getAll() {
       ]
     };
 
+// Initialize ApperClient
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
+    
     const response = await apperClient.fetchRecords("settings", params);
     
     if (!response.success) {
@@ -127,6 +134,13 @@ async function getById(id) {
       ]
     };
 
+// Initialize ApperClient
+    const { ApperClient } = window.ApperSDK;
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
+    
     const response = await apperClient.getRecordById("settings", id, params);
     
     if (!response.success) {
