@@ -1,0 +1,75 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #1A1D29 0%, #2A2D3A 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .miami-gradient {
+    background: linear-gradient(135deg, #FF6B9D 0%, #4ECDC4 50%, #FFE66D 100%);
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+  }
+  
+  .neon-glow:hover {
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.5), 0 0 40px rgba(78, 205, 196, 0.3);
+  }
+  
+  .chat-bubble-sender {
+    background: linear-gradient(135deg, #FF6B9D 0%, #FF8A80 100%);
+  }
+  
+  .chat-bubble-receiver {
+    background: linear-gradient(135deg, #4ECDC4 0%, #95E1D3 100%);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Toast Styling */
+.Toastify__toast-container {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+}
+
+.Toastify__toast {
+  background: rgba(42, 45, 58, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 157, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.Toastify__toast--success {
+  border-color: rgba(78, 205, 196, 0.3);
+}
+
+.Toastify__toast--error {
+  border-color: rgba(255, 107, 157, 0.3);
+}
+
+.Toastify__toast--info {
+  border-color: rgba(149, 225, 211, 0.3);
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(90deg, #FF6B9D, #4ECDC4);
+}

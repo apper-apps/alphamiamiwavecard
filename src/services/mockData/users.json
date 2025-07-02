@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "Id": 1,
+      "username": "currentuser",
+      "displayName": "Your Profile",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=currentuser",
+      "bio": "Living the Miami dream 🌴 | Content creator | Beach lover",
+      "followersCount": 1247,
+      "followingCount": 328,
+      "isOnline": true,
+      "isFollowing": false
+    },
+    {
+      "Id": 2,
+      "username": "sarah_miami",
+      "displayName": "Sarah Martinez",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
+      "bio": "Sunset chaser 🌅 | Photography enthusiast | Miami Beach resident",
+      "followersCount": 2156,
+      "followingCount": 892,
+      "isOnline": true,
+      "isFollowing": false
+    },
+    {
+      "Id": 3,
+      "username": "carlos_beach",
+      "displayName": "Carlos Rodriguez",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=carlos",
+      "bio": "Professional surfer 🏄‍♂️ | Ocean lover | South Beach local",
+      "followersCount": 3421,
+      "followingCount": 654,
+      "isOnline": false,
+      "isFollowing": true
+    },
+    {
+      "Id": 4,
+      "username": "art_deco",
+      "displayName": "Elena Vasquez",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=elena",
+      "bio": "Architecture historian 🏛️ | Art Deco expert | Miami culture enthusiast",
+      "followersCount": 1832,
+      "followingCount": 445,
+      "isOnline": true,
+      "isFollowing": false
+    },
+    {
+      "Id": 5,
+      "username": "miami_foodie",
+      "displayName": "Marco Silva",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=marco",
+      "bio": "Food blogger 🍽️ | Cuban cuisine expert | Little Havana explorer",
+      "followersCount": 4567,
+      "followingCount": 1234,
+      "isOnline": true,
+      "isFollowing": false
+    },
+    {
+      "Id": 6,
+      "username": "pool_party",
+      "displayName": "Isabella Torres",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=isabella",
+      "bio": "Event planner 🎉 | Rooftop party expert | Miami nightlife curator",
+      "followersCount": 2890,
+      "followingCount": 756,
+      "isOnline": false,
+      "isFollowing": true
+    },
+    {
+      "Id": 7,
+      "username": "fitness_miami",
+      "displayName": "Jake Thompson",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=jake",
+      "bio": "Personal trainer 💪 | Fitness coach | Bayfront Park regular",
+      "followersCount": 1654,
+      "followingCount": 423,
+      "isOnline": true,
+      "isFollowing": false
+    },
+    {
+      "Id": 8,
+      "username": "sunset_lover",
+      "displayName": "Maria Gonzalez",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=maria",
+      "bio": "Nature photographer 📸 | Golden hour specialist | Miami beach wanderer",
+      "followersCount": 3245,
+      "followingCount": 892,
+      "isOnline": true,
+      "isFollowing": false
+    },
+    {
+      "Id": 9,
+      "username": "beach_vibes",
+      "displayName": "Alex Rivera",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alex",
+      "bio": "Beach volleyball player 🏐 | Sand court champion | Miami Beach athlete",
+      "followersCount": 1987,
+      "followingCount": 567,
+      "isOnline": false,
+      "isFollowing": true
+    },
+    {
+      "Id": 10,
+      "username": "wave_rider",
+      "displayName": "Tommy Ocean",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=tommy",
+      "bio": "Surf instructor 🌊 | Wave forecasting expert | Miami waters guide",
+      "followersCount": 2341,
+      "followingCount": 678,
+      "isOnline": true,
+      "isFollowing": false
+    }
+  ]
+}

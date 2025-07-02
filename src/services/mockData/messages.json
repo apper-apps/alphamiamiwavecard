@@ -1,0 +1,134 @@
+{
+  "messages": [
+    {
+      "Id": 1,
+      "chatId": 1,
+      "senderId": "beach_vibes",
+      "senderUsername": "beach_vibes",
+      "content": "Hey everyone! Perfect day for some beach volleyball 🏐",
+      "timestamp": "2024-01-15T14:00:00.000Z",
+      "readBy": ["beach_vibes", "sarah_miami"],
+      "type": "text"
+    },
+    {
+      "Id": 2,
+      "chatId": 1,
+      "senderId": "sarah_miami",
+      "senderUsername": "sarah_miami",
+      "content": "I'm in! Just finished my photo shoot at the pier",
+      "timestamp": "2024-01-15T14:05:00.000Z",
+      "readBy": ["beach_vibes", "sarah_miami"],
+      "type": "text"
+    },
+    {
+      "Id": 3,
+      "chatId": 1,
+      "senderId": "carlos_beach",
+      "senderUsername": "carlos_beach",
+      "content": "Count me in too! Need to work off that Cuban sandwich from lunch 😅",
+      "timestamp": "2024-01-15T14:10:00.000Z",
+      "readBy": ["carlos_beach"],
+      "type": "text"
+    },
+    {
+      "Id": 4,
+      "chatId": 1,
+      "senderId": "beach_vibes",
+      "senderUsername": "beach_vibes",
+      "content": "Anyone up for volleyball this afternoon?",
+      "timestamp": "2024-01-15T14:30:00.000Z",
+      "readBy": ["beach_vibes"],
+      "type": "text"
+    },
+    {
+      "Id": 5,
+      "chatId": 2,
+      "senderId": "sarah_miami",
+      "senderUsername": "sarah_miami",
+      "content": "Thanks for the like on my sunset post! 🌅",
+      "timestamp": "2024-01-15T20:00:00.000Z",
+      "readBy": ["sarah_miami"],
+      "type": "text"
+    },
+    {
+      "Id": 6,
+      "chatId": 2,
+      "senderId": "current-user",
+      "senderUsername": "currentuser",
+      "content": "That sunset photo was incredible! 📸",
+      "timestamp": "2024-01-15T20:15:00.000Z",
+      "readBy": ["current-user"],
+      "type": "text"
+    },
+    {
+      "Id": 7,
+      "chatId": 3,
+      "senderId": "miami_foodie",
+      "senderUsername": "miami_foodie",
+      "content": "You guys have to try this new place I discovered!",
+      "timestamp": "2024-01-15T18:30:00.000Z",
+      "readBy": ["miami_foodie", "art_deco"],
+      "type": "text"
+    },
+    {
+      "Id": 8,
+      "chatId": 3,
+      "senderId": "art_deco",
+      "senderUsername": "art_deco",
+      "content": "Is it the one near the Art Deco district?",
+      "timestamp": "2024-01-15T18:35:00.000Z",
+      "readBy": ["art_deco", "miami_foodie"],
+      "type": "text"
+    },
+    {
+      "Id": 9,
+      "chatId": 3,
+      "senderId": "miami_foodie",
+      "senderUsername": "miami_foodie",
+      "content": "Found an amazing new spot in Wynwood!",
+      "timestamp": "2024-01-15T18:45:00.000Z",
+      "readBy": ["miami_foodie"],
+      "type": "text"
+    },
+    {
+      "Id": 10,
+      "chatId": 4,
+      "senderId": "carlos_beach",
+      "senderUsername": "carlos_beach",
+      "content": "Those waves this morning were perfect! 🏄‍♂️",
+      "timestamp": "2024-01-15T08:20:00.000Z",
+      "readBy": ["carlos_beach"],
+      "type": "text"
+    },
+    {
+      "Id": 11,
+      "chatId": 5,
+      "senderId": "fitness_miami",
+      "senderUsername": "fitness_miami",
+      "content": "Who's ready for that rooftop workout session?",
+      "timestamp": "2024-01-15T15:45:00.000Z",
+      "readBy": ["fitness_miami", "pool_party"],
+      "type": "text"
+    },
+    {
+      "Id": 12,
+      "chatId": 5,
+      "senderId": "pool_party",
+      "senderUsername": "pool_party",
+      "content": "Pool party tomorrow at 3 PM! Who's in?",
+      "timestamp": "2024-01-15T16:10:00.000Z",
+      "readBy": ["pool_party"],
+      "type": "text"
+    },
+    {
+      "Id": 13,
+      "chatId": 6,
+      "senderId": "art_deco",
+      "senderUsername": "art_deco",
+      "content": "The new gallery opening in Wynwood looks amazing",
+      "timestamp": "2024-01-15T13:30:00.000Z",
+      "readBy": ["art_deco"],
+      "type": "text"
+    }
+  ]
+}

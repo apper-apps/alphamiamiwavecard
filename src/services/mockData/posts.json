@@ -1,0 +1,142 @@
+{
+  "posts": [
+    {
+      "Id": 1,
+      "userId": "sarah_miami",
+      "username": "sarah_miami",
+      "displayName": "Sarah Martinez",
+      "content": "Just caught the most incredible sunset at South Beach! 🌅 The colors tonight were absolutely magical - from deep coral to electric turquoise. Miami never fails to take my breath away! #MiamiVibes #SunsetPics #SouthBeach",
+      "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
+      "likes": ["carlos_beach", "sunset_lover", "art_deco", "current-user"],
+      "comments": [
+        {
+          "Id": 1,
+          "username": "carlos_beach",
+          "content": "Wow, absolutely stunning! I was there too and the colors were unreal 😍",
+          "timestamp": "2024-01-15T19:45:00.000Z"
+        },
+        {
+          "Id": 2,
+          "username": "sunset_lover",
+          "content": "This is why I love living here! Perfect shot 📸",
+          "timestamp": "2024-01-15T20:10:00.000Z"
+        }
+      ],
+      "timestamp": "2024-01-15T19:30:00.000Z",
+      "hashtags": ["#MiamiVibes", "#SunsetPics", "#SouthBeach"],
+      "isOnline": true
+    },
+    {
+      "Id": 2,
+      "userId": "carlos_beach",
+      "username": "carlos_beach",
+      "displayName": "Carlos Rodriguez",
+      "content": "Morning surf session was EPIC! 🏄‍♂️ The waves were perfect and the water is crystal clear. Nothing beats starting the day with some Miami Beach magic. Who else is out there riding the waves today? #BeachLife #SurfingMiami #MorningVibes",
+      "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
+      "likes": ["sarah_miami", "beach_vibes", "wave_rider"],
+      "comments": [
+        {
+          "Id": 1,
+          "username": "wave_rider",
+          "content": "Dude, I saw you out there! Those barrels were insane 🤙",
+          "timestamp": "2024-01-15T08:45:00.000Z"
+        }
+      ],
+      "timestamp": "2024-01-15T08:15:00.000Z",
+      "hashtags": ["#BeachLife", "#SurfingMiami", "#MorningVibes"],
+      "isOnline": false
+    },
+    {
+      "Id": 3,
+      "userId": "art_deco",
+      "username": "art_deco",
+      "displayName": "Elena Vasquez",
+      "content": "Exploring the incredible Art Deco architecture in South Beach today! 🏛️ These buildings from the 1930s are pure geometric perfection. The pastel colors against the blue sky create such a dreamy atmosphere. Miami's history is so rich and beautiful! #ArtDeco #MiamiArchitecture #SouthBeach #History",
+      "imageUrl": "https://images.unsplash.com/photo-1533282960533-51328aa49826?w=600&h=400&fit=crop",
+      "likes": ["sarah_miami", "history_buff", "architecture_love", "miami_explorer"],
+      "comments": [
+        {
+          "Id": 1,
+          "username": "architecture_love",
+          "content": "The attention to detail in these buildings is incredible! Great shots 📷",
+          "timestamp": "2024-01-15T14:20:00.000Z"
+        },
+        {
+          "Id": 2,
+          "username": "history_buff",
+          "content": "I love how Miami preserves its Art Deco heritage. Such an important era!",
+          "timestamp": "2024-01-15T14:35:00.000Z"
+        }
+      ],
+      "timestamp": "2024-01-15T14:00:00.000Z",
+      "hashtags": ["#ArtDeco", "#MiamiArchitecture", "#SouthBeach", "#History"],
+      "isOnline": true
+    },
+    {
+      "Id": 4,
+      "userId": "miami_foodie",
+      "username": "miami_foodie",
+      "displayName": "Marco Silva",
+      "content": "Just tried the most amazing Cuban sandwich at this little place in Little Havana! 🥪 The bread was perfectly crispy, the roast pork was tender, and don't even get me started on that garlic aioli. Miami's food scene never disappoints! Swipe for more delicious shots ➡️ #MiamiFoodie #CubanFood #LittleHavana",
+      "imageUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=600&h=400&fit=crop",
+      "likes": ["food_lover", "havana_nights", "sarah_miami", "culinary_explorer"],
+      "comments": [
+        {
+          "Id": 1,
+          "username": "food_lover",
+          "content": "That looks incredible! What's the name of the place? I need to try it 🤤",
+          "timestamp": "2024-01-15T12:30:00.000Z"
+        },
+        {
+          "Id": 2,
+          "username": "havana_nights",
+          "content": "Little Havana has the BEST Cuban food! This place is a hidden gem",
+          "timestamp": "2024-01-15T12:45:00.000Z"
+        }
+      ],
+      "timestamp": "2024-01-15T12:00:00.000Z",
+      "hashtags": ["#MiamiFoodie", "#CubanFood", "#LittleHavana"],
+      "isOnline": true
+    },
+    {
+      "Id": 5,
+      "userId": "pool_party",
+      "username": "pool_party",
+      "displayName": "Isabella Torres",
+      "content": "Pool party vibes at the rooftop! 🏊‍♀️✨ The view of Biscayne Bay is absolutely breathtaking from up here. Miami skyline + infinity pool + good friends = perfect Saturday! Who's ready to dive into the weekend? #PoolParty #MiamiSkyline #RooftopVibes #WeekendFeels",
+      "imageUrl": "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&h=400&fit=crop",
+      "likes": ["party_time", "skyline_lover", "weekend_warrior", "miami_nights"],
+      "comments": [
+        {
+          "Id": 1,
+          "username": "party_time",
+          "content": "This looks like paradise! Invite me next time 😎",
+          "timestamp": "2024-01-15T16:20:00.000Z"
+        }
+      ],
+      "timestamp": "2024-01-15T16:00:00.000Z",
+      "hashtags": ["#PoolParty", "#MiamiSkyline", "#RooftopVibes", "#WeekendFeels"],
+      "isOnline": false
+    },
+    {
+      "Id": 6,
+      "userId": "fitness_miami",
+      "username": "fitness_miami",
+      "displayName": "Jake Thompson",
+      "content": "Early morning workout at Bayfront Park! 💪 There's something special about exercising with the Miami sunrise as your backdrop. The energy here is unmatched - fresh air, beautiful views, and that Miami motivation! Ready to crush this Monday! #FitnessMiami #MorningWorkout #BayfrontPark #MondayMotivation",
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+      "likes": ["fitness_first", "morning_warrior", "healthy_living"],
+      "comments": [
+        {
+          "Id": 1,
+          "username": "fitness_first",
+          "content": "You're an inspiration! I need to start my mornings like this 🔥",
+          "timestamp": "2024-01-15T06:45:00.000Z"
+        }
+      ],
+      "timestamp": "2024-01-15T06:30:00.000Z",
+      "hashtags": ["#FitnessMiami", "#MorningWorkout", "#BayfrontPark", "#MondayMotivation"],
+      "isOnline": true
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "chats": [
+    {
+      "Id": 1,
+      "name": "Beach Squad 🏖️",
+      "participantIds": [2, 3, 9],
+      "lastMessage": {
+        "content": "Anyone up for volleyball this afternoon?",
+        "timestamp": "2024-01-15T14:30:00.000Z",
+        "senderId": "beach_vibes",
+        "senderUsername": "beach_vibes"
+      },
+      "avatarUrl": "",
+      "createdAt": "2024-01-10T10:00:00.000Z"
+    },
+    {
+      "Id": 2,
+      "name": "Sarah Martinez",
+      "participantIds": [2],
+      "lastMessage": {
+        "content": "That sunset photo was incredible! 📸",
+        "timestamp": "2024-01-15T20:15:00.000Z",
+        "senderId": "current-user",
+        "senderUsername": "currentuser"
+      },
+      "avatarUrl": "",
+      "createdAt": "2024-01-12T15:30:00.000Z"
+    },
+    {
+      "Id": 3,
+      "name": "Miami Foodies 🍽️",
+      "participantIds": [5, 4, 8],
+      "lastMessage": {
+        "content": "Found an amazing new spot in Wynwood!",
+        "timestamp": "2024-01-15T18:45:00.000Z",
+        "senderId": "miami_foodie",
+        "senderUsername": "miami_foodie"
+      },
+      "avatarUrl": "",
+      "createdAt": "2024-01-08T09:15:00.000Z"
+    },
+    {
+      "Id": 4,
+      "name": "Carlos Rodriguez",
+      "participantIds": [3],
+      "lastMessage": {
+        "content": "Those waves this morning were perfect! 🏄‍♂️",
+        "timestamp": "2024-01-15T08:20:00.000Z",
+        "senderId": "carlos_beach",
+        "senderUsername": "carlos_beach"
+      },
+      "avatarUrl": "",
+      "createdAt": "2024-01-13T11:20:00.000Z"
+    },
+    {
+      "Id": 5,
+      "name": "Weekend Warriors 💪",
+      "participantIds": [7, 6, 10],
+      "lastMessage": {
+        "content": "Pool party tomorrow at 3 PM! Who's in?",
+        "timestamp": "2024-01-15T16:10:00.000Z",
+        "senderId": "pool_party",
+        "senderUsername": "pool_party"
+      },
+      "avatarUrl": "",
+      "createdAt": "2024-01-09T14:45:00.000Z"
+    },
+    {
+      "Id": 6,
+      "name": "Art & Culture 🎨",
+      "participantIds": [4, 8],
+      "lastMessage": {
+        "content": "The new gallery opening in Wynwood looks amazing",
+        "timestamp": "2024-01-15T13:30:00.000Z",
+        "senderId": "art_deco",
+        "senderUsername": "art_deco"
+      },
+      "avatarUrl": "",
+      "createdAt": "2024-01-11T16:00:00.000Z"
+    }
+  ]
+}
