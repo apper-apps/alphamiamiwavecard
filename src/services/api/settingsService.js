@@ -1,3 +1,6 @@
+import { toast } from 'react-toastify';
+
+// Utility function for delays
 // Settings service for managing logo and animation settings
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -22,12 +25,20 @@ async function getAll() {
       }
     };
 
-    const response = await apperClient.fetchRecords('settings', params);
+const response = await apperClient.fetchRecords('settings', params);
 
     if (!response.success) {
       console.error(response.message);
+      toast.error(response.message);
       return [];
     }
+
+    // Handle empty or undefined data
+    if (!response.data || response.data.length === 0) {
+      return [];
+    }
+
+    return response.data;
 
     return response.data || [];
   } catch (error) {
@@ -53,12 +64,20 @@ async function getById(id) {
       ]
     };
 
-    const response = await apperClient.getRecordById('settings', id, params);
+const response = await apperClient.getRecordById('settings', id, params);
 
     if (!response.success) {
       console.error(response.message);
+      toast.error(response.message);
       return null;
     }
+
+    // Handle empty or undefined data
+    if (!response.data) {
+      return null;
+    }
+
+    return response.data;
 
     return response.data;
   } catch (error) {
@@ -84,12 +103,39 @@ async function create(settingData) {
       }]
     };
 
-    const response = await apperClient.createRecord('settings', params);
+const response = await apperClient.createRecord('settings', params);
 
     if (!response.success) {
       console.error(response.message);
+      toast.error(response.message);
       return null;
     }
+
+    if (response.results) {
+      const successfulRecords = response.results.filter(result => result.success);
+      const failedRecords = response.results.filter(result => !result.success);
+      
+      if (failedRecords.length > 0) {
+        console.error(`Failed to create ${failedRecords.length} records:${JSON.stringify(failedRecords)}`);
+        
+        failedRecords.forEach(record => {
+          record.errors?.forEach(error => {
+            toast.error(`${error.fieldLabel}: ${error.message}`);
+          });
+          if (record.message) toast.error(record.message);
+        });
+      }
+      
+      if (successfulRecords.length > 0) {
+        toast.success('Setting created successfully');
+        return successfulRecords[0].data;
+      }
+      
+      return null;
+    }
+
+    toast.success('Setting created successfully');
+    return response.data;
 
     if (response.results) {
       const successfulRecords = response.results.filter(result => result.success);
@@ -128,12 +174,39 @@ async function update(id, settingData) {
       }]
     };
 
-    const response = await apperClient.updateRecord('settings', params);
+const response = await apperClient.updateRecord('settings', params);
 
     if (!response.success) {
       console.error(response.message);
+      toast.error(response.message);
       return null;
     }
+
+    if (response.results) {
+      const successfulRecords = response.results.filter(result => result.success);
+      const failedRecords = response.results.filter(result => !result.success);
+      
+      if (failedRecords.length > 0) {
+        console.error(`Failed to update ${failedRecords.length} records:${JSON.stringify(failedRecords)}`);
+        
+        failedRecords.forEach(record => {
+          record.errors?.forEach(error => {
+            toast.error(`${error.fieldLabel}: ${error.message}`);
+          });
+          if (record.message) toast.error(record.message);
+        });
+      }
+      
+      if (successfulRecords.length > 0) {
+        toast.success('Setting updated successfully');
+        return successfulRecords[0].data;
+      }
+      
+      return null;
+    }
+
+    toast.success('Setting updated successfully');
+    return response.data;
 
     if (response.results) {
       const successfulUpdates = response.results.filter(result => result.success);
@@ -166,12 +239,36 @@ async function deleteRecord(id) {
       RecordIds: [id]
     };
 
-    const response = await apperClient.deleteRecord('settings', params);
+const response = await apperClient.deleteRecord('settings', params);
 
     if (!response.success) {
       console.error(response.message);
+      toast.error(response.message);
       return false;
     }
+
+    if (response.results) {
+      const successfulDeletions = response.results.filter(result => result.success);
+      const failedDeletions = response.results.filter(result => !result.success);
+      
+      if (failedDeletions.length > 0) {
+        console.error(`Failed to delete ${failedDeletions.length} records:${JSON.stringify(failedDeletions)}`);
+        
+        failedDeletions.forEach(record => {
+          if (record.message) toast.error(record.message);
+        });
+      }
+      
+      if (successfulDeletions.length > 0) {
+        toast.success('Setting deleted successfully');
+        return true;
+      }
+      
+      return false;
+    }
+
+    toast.success('Setting deleted successfully');
+    return true;
 
     if (response.results) {
       const successfulDeletions = response.results.filter(result => result.success);
