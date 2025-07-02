@@ -12,25 +12,21 @@ async function getAll() {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
+// Configure fields based on settings table schema
     const params = {
       fields: [
         { field: { Name: "Name" } },
         { field: { Name: "logo_url" } },
         { field: { Name: "animation_settings" } },
-        { field: { Name: "theme" } }
-      ],
-      pagingInfo: {
-        limit: 10,
-        offset: 0
-      }
+        { field: { Name: "theme" } },
+        { field: { Name: "Tags" } },
+        { field: { Name: "Owner" } },
+        { field: { Name: "CreatedOn" } },
+        { field: { Name: "CreatedBy" } },
+        { field: { Name: "ModifiedOn" } },
+        { field: { Name: "ModifiedBy" } }
+      ]
     };
-
-// Initialize ApperClient with Project ID and Public Key
-    const { ApperClient } = window.ApperSDK;
-    const apperClient = new ApperClient({
-      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
-      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-    });
 
     // Configure fields based on settings table schema
     const params = {
@@ -77,21 +73,21 @@ async function getById(id) {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
+// Configure fields for single record retrieval
     const params = {
       fields: [
         { field: { Name: "Name" } },
         { field: { Name: "logo_url" } },
         { field: { Name: "animation_settings" } },
-        { field: { Name: "theme" } }
+        { field: { Name: "theme" } },
+        { field: { Name: "Tags" } },
+        { field: { Name: "Owner" } },
+        { field: { Name: "CreatedOn" } },
+        { field: { Name: "CreatedBy" } },
+        { field: { Name: "ModifiedOn" } },
+        { field: { Name: "ModifiedBy" } }
       ]
     };
-
-// Initialize ApperClient with Project ID and Public Key
-    const { ApperClient } = window.ApperSDK;
-    const apperClient = new ApperClient({
-      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
-      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-    });
 
     // Configure fields for single record retrieval
     const params = {
@@ -138,20 +134,19 @@ async function create(settingData) {
     });
 
     // Only include Updateable fields
-    const params = {
-      records: [{
-        logo_url: settingData.logo_url || "",
-        animation_settings: settingData.animation_settings || "",
-        theme: settingData.theme || "default"
-      }]
+// Filter to only include Updateable fields for creation
+    const updateableData = {
+      Name: settingData.Name,
+      logo_url: settingData.logo_url,
+      animation_settings: settingData.animation_settings,
+      theme: settingData.theme,
+      Tags: settingData.Tags,
+      Owner: settingData.Owner
     };
 
-// Initialize ApperClient with Project ID and Public Key
-    const { ApperClient } = window.ApperSDK;
-    const apperClient = new ApperClient({
-      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
-      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-    });
+    const params = {
+      records: [updateableData]
+    };
 
     // Filter to only include Updateable fields for creation
     const updateableData = {
@@ -216,21 +211,20 @@ async function update(id, settingData) {
     });
 
     // Only include Updateable fields plus ID
-    const params = {
-      records: [{
-        Id: id,
-        logo_url: settingData.logo_url,
-        animation_settings: settingData.animation_settings,
-        theme: settingData.theme
-      }]
+// Filter to only include Updateable fields for update
+    const updateableData = {
+      Id: id, // Required for update
+      Name: settingData.Name,
+      logo_url: settingData.logo_url,
+      animation_settings: settingData.animation_settings,
+      theme: settingData.theme,
+      Tags: settingData.Tags,
+      Owner: settingData.Owner
     };
 
-// Initialize ApperClient with Project ID and Public Key
-    const { ApperClient } = window.ApperSDK;
-    const apperClient = new ApperClient({
-      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
-      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-    });
+    const params = {
+      records: [updateableData]
+    };
 
     // Filter to only include Updateable fields for update
     const updateableData = {
@@ -295,16 +289,9 @@ async function deleteRecord(id) {
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
     });
 
-    const params = {
+const params = {
       RecordIds: [id]
     };
-
-// Initialize ApperClient with Project ID and Public Key
-    const { ApperClient } = window.ApperSDK;
-    const apperClient = new ApperClient({
-      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
-      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-    });
 
     const params = {
       RecordIds: [id]
