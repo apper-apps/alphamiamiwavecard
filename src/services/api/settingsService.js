@@ -13,7 +13,7 @@ async function getAll() {
     });
 
 // Configure fields based on settings table schema
-    const params = {
+const params = {
       fields: [
         { field: { Name: "Name" } },
         { field: { Name: "logo_url" } },
@@ -59,7 +59,7 @@ async function getById(id) {
 
 // Configure fields for single record retrieval
     const params = {
-      fields: [
+fields: [
         { field: { Name: "Name" } },
         { field: { Name: "logo_url" } },
         { field: { Name: "animation_settings" } },
@@ -72,7 +72,6 @@ async function getById(id) {
         { field: { Name: "ModifiedBy" } }
       ]
     };
-
     const response = await apperClient.getRecordById('settings', id, params);
 
     if (!response || !response.success) {
